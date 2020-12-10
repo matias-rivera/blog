@@ -1,3 +1,5 @@
 /backend/node_modules
 /frontend/node_modules
+/frontend/.next
+/frontend/next.config.js
 /backend/.env

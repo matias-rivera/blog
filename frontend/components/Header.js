@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { APP_NAME} from '../config'
+import Link from 'next/link'
+import {signout, isAuth} from '../actions/auth'
 import {
   Collapse,
   Navbar,
@@ -13,6 +16,7 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
+import  Router from 'next/router';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,18 +25,40 @@ const Header = () => {
     return (
         <div>
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <Link href='/'>
+              <NavLink className='font-weight-bold'>{APP_NAME}</NavLink>
+            </Link>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavLink href="/components/">Components</NavLink>
+                {!isAuth() && (
+                  <>
+                    <NavItem>
+                      <Link href='/signin'>
+                        <NavLink>
+                          Sigin
+                        </NavLink>
+                      </Link>
+                    </NavItem>
+                    <NavItem>
+                      <Link href='/signup'>
+                        <NavLink>
+                          Signup
+                        </NavLink>
+                      </Link>
+                    </NavItem>
+                  </>
+                )}
+                
+                {isAuth() && (
+                  <NavItem>
+                    <NavLink style={{cursor: 'pointer'}} onClick={() => signout(() => Router.replace(`/signin`))}>
+                      Signout
+                    </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                </NavItem>
+                )}
+                
               </Nav>
-              <NavbarText>Simple Text</NavbarText>
             </Collapse>
           </Navbar>
         </div>
