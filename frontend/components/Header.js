@@ -29,8 +29,8 @@ const Header = () => {
               <NavLink className='font-weight-bold'>{APP_NAME}</NavLink>
             </Link>
             <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
-              <Nav className="mr-auto" navbar>
+            <Collapse isOpen={isOpen} navbar >
+              <Nav className="ml-auto" navbar>
                 {!isAuth() && (
                   <>
                     <NavItem>

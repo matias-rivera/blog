@@ -4,8 +4,7 @@ const Layout = ({children}) => {
     return (
         <>
             <Header/>
-                {children}
-            <p>Footer</p>
+            {children}
         </>
     )
 }
