@@ -6,7 +6,7 @@ const AdminIndex = () => {
     return (
         <Layout>
             <Admin>
-                <div className='container-fluid'>
+                <div className='container'>
                     <div className='row'>
                         <div className='col-md-12 py-5'>
                             <h2>Admin Dashboard</h2>
@@ -21,7 +21,7 @@ const AdminIndex = () => {
 
                                 <li className='list-group-item'>
                                     <Link href='/admin/crud/category-tag'>
-                                        <a>Create Tag</a>
+                                        <a>Create Category</a>
                                     </Link>
                                 </li>
                             </ul>
