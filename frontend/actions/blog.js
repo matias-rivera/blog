@@ -46,3 +46,19 @@ export const singleBlog = slug => {
     }).catch(err => console.log(err))
 }
 
+//list related blogs
+export const listRelated = (blog) => {
+    
+    return fetch(`${API}/blogs/related`, {
+        method: 'POST',
+        headers:{
+            Accept:'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(blog)
+    })
+    .then(response => {
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}

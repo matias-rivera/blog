@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { singleBlog } from '../../actions/blog'
+import { singleBlog, listRelated } from '../../actions/blog'
 import { API, DOMAIN, APP_NAME  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
+import SmallCard from '../../components/blog/SmallCard'
 
 const SingleBlog = ({blog}) => {
 
@@ -30,6 +31,22 @@ const SingleBlog = ({blog}) => {
         </Head>
     )
 
+    const [related, setRelated] = useState([])
+
+    useEffect(() => {
+        loadRelated()
+    },[])
+    
+    const loadRelated = () => {
+        listRelated({blog}).then(data => {
+            if(data.error){
+                console.log(data.error)
+            } else {
+                setRelated(data)
+            }
+        })
+    }
+
     const showBlogCategories = blog => (
         blog.categories.map((category,i) => (
             <Link key={i} href={`/categories/${category.slug}`}>
@@ -43,6 +60,16 @@ const SingleBlog = ({blog}) => {
             <Link key={i} href={`/tags/${tag.slug}`}>
                 <a className='btn btn-outline-primary mx-1 mt-3'>{tag.name}</a>
             </Link>
+        ))
+    )
+
+    const showRelatedBlogs = () => (
+        related.map((blog, i) => (
+            <div key={i} className='col-md-4'>
+                <article>
+                    <SmallCard blog={blog} />
+                </article>
+            </div>
         ))
     )
 
@@ -88,10 +115,12 @@ const SingleBlog = ({blog}) => {
                                 </div>
                             </section>
                         </div>
-                        <div className='container pb-5'>
+                        <div className='container'>
                             <h4 className='text-center py-5 h2'>Related Blogs</h4>
                             <hr />
-                            <p>Related blogs show</p>
+                            <div className='row'>
+                                {showRelatedBlogs()}
+                            </div>
                         </div>
 
                         <div className='container pb-5'>
