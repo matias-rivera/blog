@@ -18,7 +18,7 @@ exports.create = (req,res) => {
     form.parse(req, (err, fields, files) => {
         if(err){
             return res.status(400).json({
-                error: errorHandler(err.message)
+                error: errorHandler('error parse')
             })
         }
 
@@ -52,13 +52,13 @@ exports.create = (req,res) => {
 
 
         //blog
-        let blog = new Blog()
+        const blog = new Blog()
         blog.title = title
         blog.body = body
         blog.excerpt = smartTrim(body, 320, ' ', '...')
         blog.slug = slugify(title).toLowerCase()
         blog.mtitle = `${title} | ${process.env.APP_NAME}`
-        blog.mdesc = stripHtml(body.substring(0, 160))
+        blog.mdesc = stripHtml(body.substring(0, 160)).result
         blog.postedBy = req.user._id
 
         //categirues
@@ -77,26 +77,28 @@ exports.create = (req,res) => {
             blog.photo.contentType = files.photo.type
         }
 
+        console.log(blog)
         blog.save((err, result) => {
             if(err){
                 return res.status(400).json({
-                    error: errorHandler(err)
+                    error: err.message
                 })
             }
+            console.log('Here')
             //res.josn(result)
             Blog.findByIdAndUpdate(result._id, {
                 $push: {categories: categoriesArray}
             }, {new: true}).exec((err, result) => {
                 if(err){
                     return res.status(400).json({
-                        error: errorHandler(err)
+                        error: errorHandler(err.message)
                     })
                 } else{
                     Blog.findByIdAndUpdate(result._id, {$push: 
                     {tags: tagsArray}}, {new: true}).exec((err, result) => {
                         if(err){
                             return res.status(400).json({
-                                error: errorHandler(err)
+                                error: errorHandler(err.message)
                          })
                         } else{
                             res.json(result)
@@ -106,4 +108,25 @@ exports.create = (req,res) => {
             })
         })
     })
+}
+
+
+exports.list = (req, res) => {
+    
+}
+
+exports.listAllBlogsCategoriesTags = (req, res) => {
+
+}
+
+exports.read = (req, res) => {
+
+}
+
+exports.remove = (req, res) => {
+
+}
+
+exports.update = (req, res) => {
+
 }
