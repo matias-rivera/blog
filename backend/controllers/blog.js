@@ -140,6 +140,7 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
     let categories
     let tags
 
+    console.log(skip, limit)
     //get all blogs
     Blog.find({})
     .populate('categories', '_id name slug')
