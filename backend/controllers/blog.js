@@ -250,7 +250,7 @@ exports.update = (req, res) => {
             }
     
             const slugBeforeMerge = oldBlog.slug
-            oldBlog = _merge(oldBlog, fields)
+            oldBlog = _.merge(oldBlog, fields)
             oldBlog.slug = slugBeforeMerge
 
             const {body, desc, categories, tags} = fields
@@ -265,7 +265,7 @@ exports.update = (req, res) => {
             }
 
             if(tags) {
-                oldBlog.categories = tags.split(',')
+                oldBlog.tags = tags.split(',')
             }
 
     

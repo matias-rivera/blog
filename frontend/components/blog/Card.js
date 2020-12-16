@@ -46,15 +46,15 @@ const Card = ({blog}) => {
                     <section>
                         <img 
                             className='img img-fluid'
-                            style={{maxHeight: '150px', width: 'auto'}}
+                            style={{maxHeight: 'auto', width: '100%'}}
                             src={`${API}/blog/photo/${blog.slug}`}
                             alt={blog.title}
                         />
                     </section>
                 </div>
                 <div className='col-md-8'>
-                    <section>
-                        <div className='pb-3'>
+                    <section className='card border-0'>
+                        <div className='pb-3' >
                             {renderHTML(blog.excerpt)}
                         </div>
                         <Link href={`/blogs/${blog.slug}`}>

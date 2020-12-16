@@ -108,7 +108,7 @@ const SingleBlog = ({blog}) => {
                                 </div>
                             </section>
                         </div>
-                        <div className='container'>
+                        <div className='container card border-0'>
                             <section>
                                 <div className='col-md-12 lead'>
                                     {renderHTML(blog.body)}
