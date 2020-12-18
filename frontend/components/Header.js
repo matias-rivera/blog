@@ -18,6 +18,8 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
+import Search from './blog/Search';
+
 
 Router.onRouteChangeStart = (url) => NProgress.start();
 Router.onRouteChangeComplete = (url) => NProgress.done();
@@ -28,7 +30,7 @@ const Header = () => {
 
     const toggle = () => setIsOpen(!isOpen);
     return (
-        <div>
+        <>
           <Navbar color="light" light expand="md">
             <Link href='/'>
               <NavLink className='font-weight-bold'>{APP_NAME}</NavLink>
@@ -96,7 +98,8 @@ const Header = () => {
               </Nav>
             </Collapse>
           </Navbar>
-        </div>
+          <Search />
+        </>
       ); 
 }
 

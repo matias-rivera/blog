@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { API } from '../config'
-
+import queryString from 'query-string'
 
 //create a blog
 export const createBlog = (blog, token) => {
@@ -103,4 +103,14 @@ export const updateBlog = (blog, token, slug) => {
         return response.json()
     })
     .catch(err => console.log(err))
+}
+
+//list searched blogs
+export const listSearch = (params) => {
+    const query = queryString.stringify(params)
+    return fetch(`${API}/blogs/search?${query}`, {
+        method: 'GET'
+    }).then(response => {
+        return response.json()
+    }).catch(err => console.log(err))
 }
