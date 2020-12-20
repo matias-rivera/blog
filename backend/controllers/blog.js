@@ -1,5 +1,6 @@
 const Blog = require('../models/blog')
 const Category = require('../models/category')
+const User = require('../models/user')
 const Tag = require('../models/tag')
 const formidable = require('formidable')
 const slugify = require('slugify')
@@ -361,3 +362,28 @@ exports.listSearch = (req, res) => {
 
     }
 } 
+
+exports.listByUser = (req, res) => {
+    User.findOne({username: req.params.username}).exec((err, user) => {
+        if(err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            })
+        }
+        const userId = user._id
+        Blog.find({postedBy: userId})
+            .populate('categories', '_id name slug')
+            .populate('tags', '_id name slug')
+            .populate('postedBy', '_id name username')
+            .select('_id title slug postedBy createdAt updatedAt')
+            .exec((err, data) => {
+                if(err) {
+                    return res.status(400).json({
+                        error: errorHandler(err)
+                    })
+                }
+                res.json(data)
+            })
+        })
+}
+

@@ -67,7 +67,7 @@ const Header = () => {
                 
                 
 
-                {isAuth() && isAuth().role == 0 && (
+                {isAuth() && isAuth().role === 0 && (
                   <NavItem>
                     <Link href='/user'>
                       <NavLink>
@@ -77,7 +77,7 @@ const Header = () => {
                 </NavItem>
                 )}
 
-                {isAuth() && isAuth().role == 1 && (
+                {isAuth() && isAuth().role === 1 && (
                   <NavItem>
                     <Link href='/admin'>
                       <NavLink>
@@ -94,7 +94,13 @@ const Header = () => {
                     </NavLink>
                 </NavItem>
                 )}
-                
+                 <NavItem>
+                      <Link href='/user/crud/blog'>
+                        <NavLink className='btn btn-primary text-light'>
+                          Write a Blog
+                        </NavLink>
+                      </Link>
+                  </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
