@@ -41,12 +41,14 @@ exports.list = (req, res) => {
 exports.read = (req, res) => {
     const slug = req.params.slug.toLowerCase()
 
+    //find tag
     Tag.findOne({ slug }).exec((err, tag) => {
         if(err){
             return res.status(400).json({
                 error: errorHandler(err)
             })
         }
+        //find tag blogs
         Blog.find({tags: tag})
             .populate('categories', '_id name slug')
             .populate('tags', '_id name slug')
