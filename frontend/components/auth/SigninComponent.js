@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import { signin, authenticate, isAuth } from '../../actions/auth'
 import Router from 'next/router'
+import Link from 'next/link'
 
 const SigninComponent = () => {
     
@@ -94,6 +95,10 @@ const SigninComponent = () => {
             {showLoading()}
             {showMessage()}
             {showForm && signinForm()}
+            <hr />
+            <Link href='/auth/password/forgot'>
+                <a className='btn btn-outline-danger btn-sm'>Forgot password?</a>
+            </Link>
         </>
     )
 }

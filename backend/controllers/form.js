@@ -65,7 +65,7 @@ exports.contactBlogAuthorForm = (req, res) => {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport(transport);
 
-// send mail with defined transport object
+    // send mail with defined transport object
     transporter.sendMail(emailData).then(sent => {
         res.json({
             success: true
