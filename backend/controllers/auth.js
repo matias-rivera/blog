@@ -18,8 +18,42 @@ const transport = {
 }
 
 
+exports.preSignup = (req, res) => {
+    const {name, email, password} = req.body
+    User.findOne({email: email.toLowerCase()},(err,user) => {
+        if(user){
+            return res.status(400).json({
+                error: 'Email is taken'
+            })
+        }
+        const token = jwt.sign({name, email, password}, process.env.JWT_REGISTER, {expiresIn:'10m'})
+        const emailData = {
+            to: email,
+            from: process.env.EMAIL_FROM,
+            subject: `Account activation link`,
+            html: `
+                <h4>Please use the following link to activate your account:</h4>
+                <p>${process.env.CLIENT_URL}/auth/account/activate/${token}</p>
+                <hr />
+                <p>This email may contain sensetive information</p>
+                <p>www.matiasrivera.com</p>
+            `
+        }
+         // create reusable transporter object using the default SMTP transport
+         let transporter = nodemailer.createTransport(transport);
 
-exports.signup = (req, res) => {
+         // send mail with defined transport object
+         transporter.sendMail(emailData).then(sent => {
+             return res.json({
+                 message: `Email has been sent to ${email}. Follow the instructions to active your account. Link expires in 10min.`
+             })
+         }).catch(err => {
+             res.status(400).json({error: err.message})
+         });
+    })
+}
+
+/* exports.signup = (req, res) => {
     const {name, email, password} = req.body
 
     //check if user exist
@@ -47,6 +81,41 @@ exports.signup = (req, res) => {
         })
     })
 
+} */
+
+exports.signup = (req, res) => {
+    const token = req.body.token
+    if(token) {
+        jwt.verify(token, process.env.JWT_REGISTER, function(err, decoed) {
+            if(err){
+                return res.status(401).json({
+                    error: 'Expired link. Signup again'
+                })
+            }
+            const {name, email, password} = jwt.decode(token)
+
+            //create username and profile
+            const username = shortId.generate()
+            const profile = `${process.env.CLIENT_URL}/profile/${username}`
+
+            const user = new User({name, email, password, profile, username})
+            user.save((err, user) => {
+                if(err){
+                    return res.status(401).json({
+                        error: errorHandler(err)
+                    })
+                }
+                return res.json({
+                    message: 'Signup success!, now you can sign in'
+                })
+            })
+
+        })
+    } else {
+        return res.status(400).json({
+            error: 'Something went wrong. Try again'
+        })
+    }
 }
 
 exports.signin = (req, res) => {
