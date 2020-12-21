@@ -6,6 +6,7 @@ import { userPublicProfile } from '../../actions/user'
 import { API, DOMAIN, APP_NAME  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
+import ContactForm from './../../components/form/ContactForm';
 
 const UserProfile = ({user, blogs, query}) => {
     
@@ -90,7 +91,7 @@ const UserProfile = ({user, blogs, query}) => {
                                 <div className='card-body'>
                                     <h5 className='card-title bg-primary p-4 text-light'>Message {user.name}</h5>
                                     <br />
-                                    <p>Contact form</p>
+                                    <ContactForm authorEmail={user.email}/>
                                 </div>
 
                             </div>
