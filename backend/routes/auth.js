@@ -1,5 +1,5 @@
 const express = require('express')
-const { signup, signin, signout, requireSignin, forgotPassword, resetPassword, preSignup } = require('../controllers/auth')
+const { googleLogin, signup, signin, signout, requireSignin, forgotPassword, resetPassword, preSignup } = require('../controllers/auth')
 const router = express.Router()
 
 //validators
@@ -15,5 +15,6 @@ router.get('/signout', signout)
 router.put('/forgot-password', forgotPasswordValidator, runValidation, forgotPassword)
 router.put('/reset-password', resetPasswordValidator, runValidation, resetPassword)
 
+router.post('/google-login', googleLogin)
 
 module.exports = router
