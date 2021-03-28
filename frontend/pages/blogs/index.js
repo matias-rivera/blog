@@ -140,7 +140,7 @@ const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rout
  
 Blogs.getInitialProps = () => {
     const skip = 0
-    const limit = 2
+    const limit = 20
     return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
         if(data.error) {
             return console.log(data.error)
