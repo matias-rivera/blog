@@ -10,5 +10,6 @@ module.exports = withCSS({
         DOMAIN_PRODUCTION: 'http://localhost:3000',
         DISQUS_SHORTNAME: '',
         GOOGLE_CLIENT_ID:'',
+        MAINTENANCE: false
     }
 })

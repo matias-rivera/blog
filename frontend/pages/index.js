@@ -7,6 +7,8 @@ import { listBlogsWithCategoriesAndTags } from '../actions/blog'
 import Card from '../components/blog/Card'
 import { API, DOMAIN, APP_NAME  } from '../config';
 import SmallCard from "../components/blog/SmallCard/SmallCard";
+import Maintenance from '../components/maintenance';
+import { MAINTENANCE  } from '../config';
 
 const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
 
@@ -22,7 +24,7 @@ const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
         ))
     }
 
-    return (
+    return MAINTENANCE ? <Maintenance /> : (
         <Layout>
              <div className='d-flex flex-wrap'>
              {/* Main Post Row */}
