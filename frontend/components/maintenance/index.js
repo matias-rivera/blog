@@ -1,4 +1,4 @@
-import './style.css'
+import './maintenance.css'
 
 const Maintenance = () => {
     return (

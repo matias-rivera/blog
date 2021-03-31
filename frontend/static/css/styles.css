@@ -7,7 +7,7 @@
 }
 
 html, body {
-    font-family:  Helvetica, Arial, sans-serif;
+    font-family:  'Fire Sans',Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
@@ -15,6 +15,20 @@ html, body {
 
 body{
     box-sizing: border-box;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10rem;
+    margin: 0 0;
+}
+
+.blogs-display{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 #nprogress .bar {
@@ -32,6 +46,18 @@ body{
     object-fit: cover;
 }
 
-a{
-    text-decoration: none;
+
+@media (max-width: 1200px){
+    main {
+        padding: 0 3rem;
+    }
+
 }
+
+@media (max-width: 900px){
+    main {
+        padding: 0 1rem;
+    }
+
+}
+

@@ -9,6 +9,7 @@ import { API, DOMAIN, APP_NAME  } from '../config';
 import SmallCard from "../components/blog/SmallCard/SmallCard";
 import Maintenance from '../components/Maintenance';
 import { MAINTENANCE  } from '../config';
+import Categories from '../components/Categories'
 
 const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
 
@@ -26,16 +27,18 @@ const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
     return MAINTENANCE ? <Maintenance /> : (
         <Layout>
-             <div className='d-flex flex-wrap'>
-             {/* Main Post Row */}
+
+                <Categories categories={categories}/>
+
+
+             <div className='blogs-display'>
+                {showAllBlogs()}
+             </div>
+
         
-                    {showAllBlogs()}
-             {/*Main Post Column */}
-                    {/* <div class="col-md-8">  
-                    
-                    </div> */}
+
          
-            </div>
+           
         </Layout>
     )
 }

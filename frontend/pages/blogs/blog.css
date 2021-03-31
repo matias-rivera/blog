@@ -1,0 +1,161 @@
+.blog__title{
+    font-weight: 600;
+}
+
+.blog__subtitle{
+    font-weight: 200;
+    font-size: 1.2rem;
+}
+
+.blog__picture{
+
+    width: 100%;
+    max-height: 40rem;
+}
+
+.author{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .2rem 1rem;
+    background: #ffe2c1;
+}
+
+.social{
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.social__link{
+    padding: .6rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+}
+
+.social__link--facebook{
+    background: #3b5998;
+    color: #fff;
+    transition: all .2s;
+}
+
+.social__link--facebook:hover{
+    background: #2a4279;
+    color: #fff;
+}
+
+.blog__container{
+    display: flex;
+}
+.blog__header{
+    word-break: break-all;
+}
+
+.blog__main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 8;
+    width: 100%;
+}
+
+.blog__body{
+    margin: 2rem 0;
+    word-break: break-all;
+    
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    
+}
+
+.related__container{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    border: 0.2px solid black;
+    border-width: 1px; border-color: #bdbcbc;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.related__title{
+    font-size: 1.8rem;
+    font-weight: 600 ;
+    text-align: left;
+
+}
+
+.related-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+.related-blog{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; 
+    transition: all .4s;
+    
+}
+
+.related-blog:hover{
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+
+
+.related-line{
+    margin: 0;
+}
+
+.related-blog__number{
+    font-weight: 400;
+    font-size: 2.5rem;
+    margin-right: 1rem;
+}
+
+.related-blog__title{
+    flex-grow: 5;
+    text-align: left;
+    color: #5a5a5a;
+    padding: .5rem;
+}
+
+.related-blog:hover .related-blog__title{
+    color: #1b9bff;
+}
+
+
+
+
+.related-blog__picture{
+    max-width: 5rem;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width : 900px) {
+    .blog__container{
+        flex-direction: column;
+    }
+    .blog__body{
+        justify-content: center;
+    }
+    .sidebar{
+        max-width: none;
+    }
+    .related__container{
+        margin: 0;
+    }
+}

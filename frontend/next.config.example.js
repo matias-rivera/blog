@@ -10,6 +10,7 @@ module.exports = withCSS({
         DOMAIN_PRODUCTION: 'http://localhost:3000',
         DISQUS_SHORTNAME: '',
         GOOGLE_CLIENT_ID:'',
+        FACEBOOK_APP_ID:1,
         MAINTENANCE: false
     }
 })

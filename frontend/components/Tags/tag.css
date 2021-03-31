@@ -1,0 +1,28 @@
+.tags-list{
+    display: flex;
+  flex-wrap: wrap;
+
+}
+
+.tags-list__item{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 10%;
+    background: #1b9bff;
+    padding: 0.5rem 1rem;
+    border-radius: .5rem;
+    color: #fff;
+    list-style-type: none;
+    margin: .5rem .5rem;
+    max-width: 100%;
+    cursor: pointer;
+    text-align: center;
+    transition: all .3s;
+    border: .1rem solid transparent;
+}
+
+.tags-list__item:hover{
+    background: #fff;
+    color: #1b9bff;
+    border: .1rem solid #1b9bff;
+}

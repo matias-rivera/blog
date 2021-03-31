@@ -48,8 +48,7 @@ nav{
 
   .search__input{
       padding-left: 1rem;
-      width: 100%;
-      max-width: 15rem;
+      width: 60%;
       height: 2rem;
       border: 0;
       border-radius: 1rem;
@@ -57,7 +56,7 @@ nav{
   }
 
   .search__input:active, .search__input:hover{
-    max-width: 20rem;
+    width: 80%;
     height: 2rem;
     border: 0;
     border-radius: 1rem;
@@ -87,11 +86,12 @@ nav{
     line-height: 80px;
     margin: 0 5px;
     cursor: pointer;
+    
   }
   .navbar__link{
     color: white;
     font-size: 17px;
-    padding: 7px 13px;
+    padding: 1rem 1rem;
     border-radius: 3px;
     
     text-transform: uppercase;
@@ -139,13 +139,7 @@ nav{
   
   @media (max-width: 858px){
 
-    .search input{
-        max-width: 12rem;
-    }
 
-    .search__input:active, .search__input:hover{
-      max-width: 15rem;
-  }
     
     nav{
         display: flex;
@@ -170,7 +164,7 @@ nav{
     }
     .navbar__item{
       display: block;
-      margin: 50px 0;
+      margin: 2.5rem 0;
       line-height: 30px;
     }
     .navbar__link{

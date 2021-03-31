@@ -4,7 +4,7 @@ import { APP_NAME} from '../../config'
 import Link from 'next/link'
 import  Router from 'next/router';
 import {signout, isAuth} from '../../actions/auth'
-import './style.css'
+import './header.css'
 import { listSearch } from '../../actions/blog';
 
 

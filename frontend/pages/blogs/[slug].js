@@ -3,11 +3,16 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { singleBlog, listRelated } from '../../actions/blog'
-import { API, DOMAIN, APP_NAME  } from '../../config';
+import { API, DOMAIN, APP_NAME, FACEBOOK_APP_ID  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
 import SmallCard from '../../components/blog/SmallCard'
 import DisqusThread from '../../components/DisqusThread';
+import Categories from '../../components/Categories'
+import './blog.css';
+import Tags from '../../components/Tags'
+
+import {FacebookButton, FacebookCount} from 'react-social';
 
 const SingleBlog = ({blog}) => {
 
@@ -36,7 +41,7 @@ const SingleBlog = ({blog}) => {
 
     useEffect(() => {
         loadRelated()
-    },[])
+    },[blog])
     
     const loadRelated = () => {
         listRelated({blog}).then(data => {
@@ -65,13 +70,31 @@ const SingleBlog = ({blog}) => {
     )
 
     const showRelatedBlogs = () => (
-        related.map((blog, i) => (
-            <div key={i} className='col-md-4'>
-                <article>
-                    <SmallCard blog={blog} />
-                </article>
-            </div>
-        ))
+        <div className='related__container'>
+            <div className='related__title'>Related blogs</div>
+            <ul className='related-list'>
+                {related.map((blog, i) => (
+                <>
+                <Link href={`/blogs/${blog.slug}`} key={i}>
+                    <li className='related-blog' >
+                        <div className='related-blog__title'>{blog.title}</div>
+                    
+                    
+                        <img className='related-blog__picture'
+                            src={`${API}/blog/photo/${blog.slug}`}
+                            alt={blog.title}
+                        />
+                        
+                    </li>
+                </Link>
+                {i + 1 <  Object.keys(related).length && (<hr className='related-line'/>)}
+                
+                </>
+                ))}
+                
+            </ul>    
+        </div>
+       
     )
 
     const showComments = () => {
@@ -86,7 +109,56 @@ const SingleBlog = ({blog}) => {
         <>
             {head()}
             <Layout>
-                <main>
+                <Categories categories={blog.categories} />
+                <div className='blog__header'>
+                    <h1 className='blog__title'>{blog.title}</h1>
+                    <p className='blog__subtitle'>{blog.mdesc}</p>
+                    <div className='author'>
+                        <div>
+                            Written by <Link href={`/profile/${blog.postedBy.username}`}><a>{blog.postedBy.username}</a></Link>
+                        </div>
+                        <div>
+                            Published  {moment(blog.updatedAt).fromNow()}
+                        </div>
+                    </div>
+                    <ul className='social'>
+                        <li>
+                            <FacebookButton 
+                                url={`${DOMAIN}/blogs/${blog.slug}`}
+                                appId={FACEBOOK_APP_ID}
+                                className='social__link social__link--facebook'
+                            >
+                                Share on Facebook
+                            </FacebookButton>
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div className='blog__container'>
+                    <div className='blog__main'> 
+                        <img 
+                            src={`${API}/blog/photo/${blog.slug}`}
+                            alt={blog.title}
+                            className='blog__picture'
+                        />
+                        <div className='blog__body'>
+                            
+                                {renderHTML(blog.body)}
+             
+                        </div>
+                        <Tags tags={blog.tags}/>
+
+                        <div className='blog__comments'>
+                            {showComments()}
+                        </div>
+
+                    </div>
+                    <div className='sidebar'>
+                        {showRelatedBlogs()}
+                        
+                    </div>
+                </div>
+                {/* <main>
                     <article>
                         <div className='container-fluid'>
                             <section>
@@ -136,7 +208,7 @@ const SingleBlog = ({blog}) => {
                             {showComments()}
                         </div>
                     </article>
-                </main>
+                </main> */}
             </Layout>
         </>
      );

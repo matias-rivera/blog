@@ -29,9 +29,10 @@ const SmallCard = ({blog}) => {
             <Link href={`/blogs/${blog.slug}`}>
                 <img className='smallcard__image' src={`${API}/blog/photo/${blog.slug}`}/>
             </Link>
-            <h4 className='smallcard__title'>{blog.title}</h4>
             <Link href={`/blogs/${blog.slug}`}>
-                <a className='smallcard__link'>Read more</a>
+                <div className='smallcard__title'>
+                    <h4>{blog.title}</h4>
+                </div>
             </Link>
         </div>
         
