@@ -8,10 +8,10 @@
     display: flex;
     flex-direction: column;
     flex: 1 0 10%;
-    background: #1b9bff;
+    background: var(--color-secondary);
     padding: 0.5rem 1rem;
     border-radius: .5rem;
-    color: #fff;
+    color: var(--color-white);
     list-style-type: none;
     margin: .5rem .5rem;
     max-width: 100%;
@@ -22,7 +22,6 @@
 }
 
 .tags-list__item:hover{
-    background: #fff;
-    color: #1b9bff;
-    border: .1rem solid #1b9bff;
+    background: var(--color-secondary-dark);
+    border: .1rem solid var(--color-secondary);
 }

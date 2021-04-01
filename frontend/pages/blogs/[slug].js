@@ -6,7 +6,6 @@ import { singleBlog, listRelated } from '../../actions/blog'
 import { API, DOMAIN, APP_NAME, FACEBOOK_APP_ID  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
-import SmallCard from '../../components/blog/SmallCard'
 import DisqusThread from '../../components/DisqusThread';
 import Categories from '../../components/Categories'
 import './blog.css';
@@ -53,22 +52,6 @@ const SingleBlog = ({blog}) => {
         })
     }
 
-    const showBlogCategories = blog => (
-        blog.categories.map((category,i) => (
-            <Link key={i} href={`/categories/${category.slug}`}>
-                <a className='btn btn-primary mx-1 mt-3'>{category.name}</a>
-            </Link>
-        ))
-    )
-
-    const showBlogTags = blog => (
-        blog.tags.map((tag,i) => (
-            <Link key={i} href={`/tags/${tag.slug}`}>
-                <a className='btn btn-outline-primary mx-1 mt-3'>{tag.name}</a>
-            </Link>
-        ))
-    )
-
     const showRelatedBlogs = () => (
         <div className='related__container'>
             <div className='related__title'>Related blogs</div>
@@ -110,9 +93,12 @@ const SingleBlog = ({blog}) => {
             {head()}
             <Layout>
                 <Categories categories={blog.categories} />
-                <div className='blog__header'>
+                
+                <div className='blog__container'>
+                    <div className='blog__main'> 
+                    <div className='blog__header'>
                     <h1 className='blog__title'>{blog.title}</h1>
-                    <p className='blog__subtitle'>{blog.mdesc}</p>
+                    {/* <p className='blog__subtitle'>{blog.mdesc}</p> */}
                     <div className='author'>
                         <div>
                             Written by <Link href={`/profile/${blog.postedBy.username}`}><a>{blog.postedBy.username}</a></Link>
@@ -134,8 +120,6 @@ const SingleBlog = ({blog}) => {
                     </ul>
                     
                 </div>
-                <div className='blog__container'>
-                    <div className='blog__main'> 
                         <img 
                             src={`${API}/blog/photo/${blog.slug}`}
                             alt={blog.title}

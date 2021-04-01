@@ -6,6 +6,26 @@
     box-sizing: inherit;
 }
 
+:root{
+    --color-primary: #026ec0;
+    --color-primary-light: #0e96fd;
+    --color-primary-light-2: #0383e6;
+    --color-primary-dark:#00508d;
+    --color-primary-dark-2:#2c3e50;
+    --color-secondary: #ff7b00;
+    --color-secondary-light: #ffac5e;
+    --color-secondary-dark: #d36906;
+    --color-white: #fff;
+    --color-white-2: #f7f7f7;
+    --color-white-3: #f5f5f5;
+    --color-white-blue: #dfe3ee;
+    --color-black: #000;
+    --color-gray-dark: #5a5a5a;
+    --color-facebook: #3b5998;
+    --color-facebook-dark: #2a4279;
+    
+}
+
 html, body {
     font-family:  'Fire Sans',Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -15,6 +35,7 @@ html, body {
 
 body{
     box-sizing: border-box;
+    background: var(--color-white-2);
 }
 
 
@@ -33,7 +54,7 @@ main {
 
 #nprogress .bar {
     height: 4px !important;
-    background-color: rgb(255, 171, 14);
+    background-color: var(--color-secondary-light);
 }
 
 .ql-editor {
@@ -45,6 +66,31 @@ main {
     max-height: 500px;
     object-fit: cover;
 }
+
+.social{
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.social__link{
+    padding: .6rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+}
+
+.social__link--facebook{
+    background: var(--color-facebook);
+    color: var(--color-white);
+    transition: all .2s;
+}
+
+.social__link--facebook:hover{
+    background: var(--color-facebook-dark);
+    color: #fff;
+}
+
 
 
 @media (max-width: 1200px){

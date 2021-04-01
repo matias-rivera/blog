@@ -43,11 +43,11 @@ const Header = () => {
                 {message && <p className='search__message'>{message}</p>}
 
                 {results.map((blog, i) => (
-                    <div className= 'search__link' key={i}>
-                        <Link href={`/blogs/${blog.slug}`}>
-                            <a className=''>{blog.title}</a>
+                   
+                        <Link href={`/blogs/${blog.slug}`} key={i}>
+                            <a className='search__link'>{blog.title}</a>
                         </Link>
-                    </div>
+          
 
                 ))}
             </>
@@ -121,8 +121,8 @@ const Header = () => {
                     </Link>
                   </ul>
               </nav>
-              {searched ? <div className='search__dropdown'>{searchedBlogs(results)}</div> : <><br/><br/><br/><br/></>}
             </div>
+            {searched ? <div className='search__dropdown'>{searchedBlogs(results)}</div> : <><br/><br/><br/><br/></>}
 
          
         
