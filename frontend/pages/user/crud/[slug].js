@@ -4,23 +4,15 @@ import BlogCreate from '../../../components/crud/BlogUpdate'
 
 import Link from 'next/link'
 import BlogUpdate from "../../../components/crud/BlogUpdate"
+import Dashboard from "../../../components/Dashboard"
 
 const Blog = () => {
     return (
         <Layout>
-            <Private>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-md-12 py-5 text-center'>
-                            <h2>Update blog</h2>
-                        </div>
-                        <div className='col-md-12'>
-                           <BlogUpdate />
-                        </div>
-
-                    </div>
-                </div>
-            </Private>
+            <Dashboard>
+                <h2>Update blog</h2>
+                <BlogUpdate />
+            </Dashboard>
         </Layout>
     )
 }

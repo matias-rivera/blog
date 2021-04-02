@@ -6,6 +6,9 @@ import Layout from '../../components/Layout'
 import { listBlogsWithCategoriesAndTags } from '../../actions/blog'
 import Card from '../../components/blog/Card'
 import { API, DOMAIN, APP_NAME  } from './../../config';
+import Categories from '../../components/Categories';
+import Tags from '../../components/Tags';
+import './blog.css';
 
 const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
 
@@ -63,10 +66,8 @@ const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rout
 
     const showAllBlogs = () => {
         return blogs.map((blog, i) => (
-            <article key={i}>
-                <Card blog={blog}/>
-                <hr />
-            </article>
+                <Card blog={blog} key={i}/>
+
         ))
     }
 
@@ -106,7 +107,11 @@ const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rout
         <>
             {head()}
             <Layout>
-                <main>
+                <Categories categories={categories} />
+                    {showAllBlogs()}
+                <Tags tags={tags} />
+
+                {/* <main>
                     <div className='container'>
                         <header>
                             <div className='col-md-12 pt-3'>
@@ -132,7 +137,7 @@ const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rout
                 <div className='text-center py-5'>
                                 {loadMoreButton()}
                 </div>
-                </main>
+                </main> */}
             </Layout>
         </>
      );

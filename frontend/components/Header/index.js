@@ -62,7 +62,7 @@ const Header = () => {
               type='text'
               onChange={handleChange}
           />
-          <button type='submit' className='search__button'><i class="fas fa-search"></i></button>
+          <button type='submit' className='search__button'><i className="fas fa-search"></i></button>
 
         </form>
     )
@@ -71,19 +71,16 @@ const Header = () => {
             <div className='navbar__container'>
               <nav>
                   <input type="checkbox" id="check"/>
-                  <label for="check" class="checkbtn">
-                      <i class="fas fa-bars"></i>
+                  <label htmlFor="check" className="checkbtn">
+                      <i className="fas fa-bars"></i>
                   </label>
                   <Link href='/'>
-                    <label class="navbar__logo">{APP_NAME}</label>
+                    <label className="navbar__logo">{APP_NAME}</label>
                   </Link>
                   {searchForm()}
                   <ul className='navbar__list'>
                     <Link href='/'>
                       <li className='navbar__item'><a className='navbar__link'>Home</a></li>
-                    </Link>
-                    <Link href='/blogs'>
-                      <li className='navbar__item'><a className='navbar__link'>Blogs</a></li>
                     </Link>
                     <Link href='/contact'>
                       <li className='navbar__item'><a className='navbar__link'>Contact</a></li>

@@ -4,7 +4,7 @@ import Router from 'next/router'
 import { isAuth, getCookie} from '../../actions/auth'
 import { createCategory, getCategory, getCategories, removeCategory } from '../../actions/category'
 
-const Category = () => {
+const Categories = () => {
     const [values, setValues] = useState({
         name: '',
         error: false,
@@ -158,5 +158,5 @@ const Category = () => {
     )
 }
 
-export default Category
+export default Categories
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { isAuth, getCookie} from '../../actions/auth'
 import { createTag, getTags, getTag, removeTag } from '../../actions/tag'
-const Tag = () => {
+const Tags = () => {
     
     const [values, setValues] = useState({
         name: '',
@@ -159,4 +159,4 @@ const Tag = () => {
     )
 }
 
-export default Tag
+export default Tags

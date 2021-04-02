@@ -119,7 +119,7 @@ const SingleBlog = ({blog}) => {
                         </li>
                     </ul>
                     
-                </div>
+                    </div>
                         <img 
                             src={`${API}/blog/photo/${blog.slug}`}
                             alt={blog.title}
@@ -142,57 +142,7 @@ const SingleBlog = ({blog}) => {
                         
                     </div>
                 </div>
-                {/* <main>
-                    <article>
-                        <div className='container-fluid'>
-                            <section>
-                                <div 
-                                    className='row'
-                                    style={{marginTop:'-30px'}}
-                                >
-                                    <img
-                                        src={`${API}/blog/photo/${blog.slug}`}
-                                        alt={blog.title}
-                                        className='img img-fluid featured-image'
-                                    />
-                                </div>
-                            </section>
 
-                            <section>
-                                <div className='container'>
-                                    <h1 className='display-2 py-3 text-center font-weight-bold'>{blog.title}</h1>
-                                    <p className='lead mt-3 mark'>
-                                        Written by <Link href={`/profile/${blog.postedBy.username}`}><a>{blog.postedBy.username}</a></Link> | Published {moment(blog.updatedAt).fromNow()}
-                                    </p>
-                                    <div className='pb-3'>
-                                        {showBlogCategories(blog)}
-                                        {showBlogTags(blog)}
-                                        <br />
-                                        <br />
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div className='container card border-0'>
-                            <section>
-                                <div className='col-md-12 lead'>
-                                    {renderHTML(blog.body)}
-                                </div>
-                            </section>
-                        </div>
-                        <div className='container'>
-                            <h4 className='text-center py-5 h2'>Related Blogs</h4>
-                            <hr />
-                            <div className='row'>
-                                {showRelatedBlogs()}
-                            </div>
-                        </div>
-
-                        <div className='container py-5'>
-                            {showComments()}
-                        </div>
-                    </article>
-                </main> */}
             </Layout>
         </>
      );

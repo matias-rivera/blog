@@ -2,19 +2,15 @@ import Layout from "../../components/Layout"
 import Private from '../../components/auth/Private'
 import Link from 'next/link'
 import ProfileUpdate from '../../components/auth/ProfileUpdate';
+import Dashboard from "../../components/Dashboard";
 
 const UserProfileUpdate = () => {
     return (
         <Layout>
             <Private>
-                
-                <div className='container-fluid'>
-
-                    <div className='row'>
-                        <ProfileUpdate />
-                    </div>
-                </div>
-            
+                <Dashboard>
+                    <ProfileUpdate />
+                </Dashboard>
             </Private>
         </Layout>
     )
