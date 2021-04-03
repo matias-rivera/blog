@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import Layout from '../../components/Layout'
-
 import { API, DOMAIN, APP_NAME  } from '../../config';
-import renderHTML from 'react-render-html'
-import moment from 'moment'
 import { getCategory } from '../../actions/category';
-import Card from '../../components/blog/Card'
+import Smallcard from '../../components/blog/smallcard/index';
 
 const Category = ({category, blogs}) => {
 
@@ -32,31 +28,34 @@ const Category = ({category, blogs}) => {
         </Head>
     )
 
-    return ( 
-        <>
-        {head()}
-            <Layout>
-                <main>
-                    <div className='container text-center'>
-                        <header>
-                            <div className='col-md-12 pt-3'>
-                                <h1 className='display-4 font-weight-bold'>
-                                    {category.name}
-                                </h1>
-                                {blogs.map((blog, i) => (
-                                    <div key={i}>
-                                        <Card  blog={blog} />
-                                        <hr/>
-                                    </div>
-                                    
-                                ))}
-                            </div>
-                        </header>
-                    </div>
-                </main>
-            </Layout>
-        </>
-     );
+    const showAllBlogs = () => {
+        
+        return blogs.map((blog, i) => (
+            <Smallcard blog={blog} key={i} /> 
+        ))
+    }
+
+    return (<> 
+      {head()}
+      <Layout>
+            <h1 className='text-center'>
+                {category.name}
+            </h1>
+            {blogs.length > 0 ?
+            <div className='blogs-display'>
+               {showAllBlogs()}
+            </div>
+            : <h1 className='text-center'>No Blogs found</h1>
+        }
+        </Layout>
+    
+    </>)
+   
+           
+        
+    
+    
+
 }
  
 Category.getInitialProps = ({query}) => {

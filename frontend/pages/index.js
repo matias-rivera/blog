@@ -6,10 +6,9 @@ import { withRouter } from 'next/router';
 import { listBlogsWithCategoriesAndTags } from '../actions/blog'
 import Card from '../components/blog/Card'
 import { API, DOMAIN, APP_NAME  } from '../config';
-import SmallCard from "../components/blog/SmallCard/SmallCard";
-import Maintenance from '../components/Maintenance';
-import { MAINTENANCE  } from '../config';
-import Categories from '../components/Categories'
+import Smallcard from "../components/blog/smallcard/index";
+import Categories from '../components/categories'
+import Tags from "../components/Tags";
 
 const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
 
@@ -21,33 +20,58 @@ const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     const showAllBlogs = () => {
         
         return blogs.map((blog, i) => (
-            <SmallCard blog={blog} key={i} /> 
+            <Smallcard blog={blog} key={i} /> 
         ))
     }
 
-    return MAINTENANCE ? <Maintenance /> : (
-        <Layout>
-
-                <Categories categories={categories}/>
-
-
-             <div className='blogs-display'>
-                {showAllBlogs()}
-             </div>
-
-        
-
-         
-           
-        </Layout>
+    const showLoadedBlogs = () => (
+        loadedBlogs.map((blog, i) => (
+            <Smallcard blog={blog} key={i} /> 
+        ))
     )
+
+    const loadMore = () => {
+        const toSkip = skip + limit
+        listBlogsWithCategoriesAndTags(toSkip, limit).then((data) => {
+            if(data.error){
+                console.log(data.error)
+            } else {
+                setLoadedBlogs([...loadedBlogs, ...data.blogs])
+                setSize(data.size)
+                setSkip(toSkip)
+            }
+        })
+    }
+
+    const loadMoreButton = () => (
+        size > 0 && size >= limit && (
+            <button 
+                className='btn btn-outline-primary btn-lg'
+                onClick={loadMore}
+            >
+                Load More
+            </button>
+        )
+    )
+
+    return <Layout>
+                <Categories categories={categories}/>
+                <div className='blogs-display'>
+                    {showAllBlogs()}
+                    {showLoadedBlogs()}
+                </div>
+                    {loadMoreButton()}
+                <Tags tags={tags}/>
+            </Layout>
+        
+    
 }
 
 
 
 Index.getInitialProps = () => {
     const skip = 0
-    const limit = 20
+    const limit = 8
     return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
         if(data.error) {
             return console.log(data.error)

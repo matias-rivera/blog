@@ -1,21 +1,21 @@
+
 .smallcard {
     display: flex;
-    flex: 1 0 20%;
+    flex: 1 0 25%;
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
     text-align: center;
-    max-width: 25rem;
+    max-width: 25%;
     max-height: 430px;
-    border-radius: 8px;
+    border-radius: .5rem;
+    border: 1px solid var(--color-white-2);
     box-shadow: 0 2px 2px rgba(0, 0 ,0 ,0.2);
     overflow: hidden;
-    margin: 2px;
     transition: all 0.25s;
     cursor: pointer;
+    background: var(--color-white);
 }
-
-
 
 .smallcard:hover{
     transform: translateY(-15px);
@@ -50,12 +50,25 @@
     color: #3498db;
     margin-bottom: 1rem;
 }
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 1100px) {
+    .smallcard{
+        display: flex;
+        flex-basis: 33%;
+        max-width: 33%;
+
+    }
+}
+
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 600px) {
     .smallcard{
         display: flex;
-        flex: 1 0 40%;
+        flex-basis: 50%;
+        max-width: 50%;
+
     }
     .smallcard__title h4{
         font-size: 1.2rem;
