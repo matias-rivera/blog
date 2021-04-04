@@ -8,7 +8,7 @@ import Card from '../components/blog/Card'
 import { API, DOMAIN, APP_NAME  } from '../config';
 import Smallcard from "../components/blog/smallcard/index";
 import Categories from '../components/categories'
-import Tags from "../components/Tags";
+import Tags from "../components/tags";
 
 const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
 

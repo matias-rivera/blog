@@ -7,9 +7,9 @@ import { API, DOMAIN, APP_NAME, FACEBOOK_APP_ID  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
 import DisqusThread from '../../components/DisqusThread';
-import Categories from '../../components/Categories'
+import Categories from '../../components/categories'
 import './blog.css';
-import Tags from '../../components/Tags'
+import Tags from '../../components/tags'
 
 import {FacebookButton, FacebookCount} from 'react-social';
 

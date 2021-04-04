@@ -136,7 +136,6 @@ nav{
 
   @media (max-width: 1300px){
     .navbar__link{
-      padding: 7px 0;
       font-size: 1rem;
     }
 
@@ -145,20 +144,21 @@ nav{
     }
   }
 
-  
+
   @media (max-width: 858px){
 
 
     
-    .navbar{
+    nav{
         display: flex;
         
         flex-direction: row-reverse;
+        align-items: center;
+        
         
     }
     .checkbtn{
-      display: block;
-
+      display: flex;
     }
     .navbar__list{
       padding: 0;
@@ -199,3 +199,9 @@ nav{
       left: 0;
     }
   }
+
+
+
+
+  
+ 

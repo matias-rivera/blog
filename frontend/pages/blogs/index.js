@@ -6,8 +6,8 @@ import Layout from '../../components/Layout'
 import { listBlogsWithCategoriesAndTags } from '../../actions/blog'
 import Card from '../../components/blog/Card'
 import { API, DOMAIN, APP_NAME  } from './../../config';
-import Categories from '../../components/Categories';
-import Tags from '../../components/Tags';
+import Categories from '../../components/categories';
+import Tags from '../../components/tags';
 import './blog.css';
 
 const Blogs = ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router}) => {
