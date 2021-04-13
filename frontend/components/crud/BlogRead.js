@@ -67,11 +67,8 @@ const BlogRead = ({username}) => {
 
     const showAllBlogs = () => (
         blogs.map((blog, i) => (
-            <div key={i} className='pb-5'>
-                <h3>{blog.title}</h3>
-                <p className='mark'>
-                    Written by {blog.postedBy.name} | Published on {moment(blog.updatedAt).fromNow()}
-                </p>
+            <div key={i} className='p-2 border'>
+                <h5>{blog.title}</h5>
                 <button
                     className='btn btn-sm btn-danger'
                     onClick={() => deleteConfirm(blog.slug)}

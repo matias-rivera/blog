@@ -43,9 +43,11 @@
 
 .blog__body{
     margin: 2rem 0;
-    word-break: normal;
+    word-break: normal;    
+}
 
-    
+.blog__body img{
+    max-width: 100%;   
 }
 
 .sidebar{
@@ -143,5 +145,6 @@
     }
     .related__container{
         margin: 0;
+        margin-top: 1rem;
     }
 }

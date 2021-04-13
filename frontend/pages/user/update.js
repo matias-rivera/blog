@@ -3,13 +3,16 @@ import Private from '../../components/auth/Private'
 import Link from 'next/link'
 import ProfileUpdate from '../../components/auth/ProfileUpdate';
 import Dashboard from "../../components/Dashboard";
+import DashboardContent from "../../components/DashboardContent";
 
 const UserProfileUpdate = () => {
     return (
         <Layout>
             <Private>
                 <Dashboard>
-                    <ProfileUpdate />
+                    <DashboardContent title={'Profile'}>
+                        <ProfileUpdate />
+                    </DashboardContent>
                 </Dashboard>
             </Private>
         </Layout>

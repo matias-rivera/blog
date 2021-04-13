@@ -87,6 +87,18 @@ export const list = (username) => {
     }).catch(err => console.log(err))
 }
 
+//list last blogs
+export const lastBlogs = () => {
+
+    const endpoint = `${API}/blogs/last`
+
+    return fetch(endpoint, {
+        method: 'GET'
+    }).then(response => {
+        return response.json()
+    }).catch(err => console.log(err))
+}
+
 
 //delete a blog
 export const deleteBlog = (slug, token) => {
@@ -144,4 +156,24 @@ export const listSearch = (params) => {
     }).then(response => {
         return response.json()
     }).catch(err => console.log(err))
+}
+
+//get info
+export const getInfo = (token) => {
+    
+    const endpoint = `${API}/blogs/info`
+    
+    return fetch(endpoint, {
+        method: 'GET',
+        headers:{
+            Accept:'application/json',
+            'Content-Type':'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        handleResponse(response)
+        return response.json()
+    })
+    .catch(err => console.log(err))
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { singleBlog, listRelated } from '../../actions/blog'
+import { singleBlog, listRelated, lastBlogs } from '../../actions/blog'
 import { API, DOMAIN, APP_NAME, FACEBOOK_APP_ID  } from '../../config';
 import renderHTML from 'react-render-html'
 import moment from 'moment'
@@ -37,9 +37,11 @@ const SingleBlog = ({blog}) => {
     )
 
     const [related, setRelated] = useState([])
+    const [last, setLast] = useState([])
 
     useEffect(() => {
         loadRelated()
+        loadLast()
     },[blog])
     
     const loadRelated = () => {
@@ -52,11 +54,22 @@ const SingleBlog = ({blog}) => {
         })
     }
 
-    const showRelatedBlogs = () => (
+
+    const loadLast = () => {
+        lastBlogs().then(data => {
+            if(data.error){
+                console.log(data.error)
+            } else {
+                setLast(data)
+            }
+        })
+    }
+
+    const showRelatedBlogs = (blogs, title) => (
         <div className='related__container'>
-            <div className='related__title'>Related blogs</div>
+            <div className='related__title'>{title}</div>
             <ul className='related-list'>
-                {related.map((blog, i) => (
+                {blogs.map((blog, i) => (
                 <>
                 <Link href={`/blogs/${blog.slug}`} key={i}>
                     <li className='related-blog' >
@@ -70,7 +83,7 @@ const SingleBlog = ({blog}) => {
                         
                     </li>
                 </Link>
-                {i + 1 <  Object.keys(related).length && (<hr className='related-line'/>)}
+                {i + 1 <  Object.keys(blogs).length && (<hr className='related-line'/>)}
                 
                 </>
                 ))}
@@ -138,8 +151,8 @@ const SingleBlog = ({blog}) => {
 
                     </div>
                     <div className='sidebar'>
-                        {showRelatedBlogs()}
-                        
+                        {showRelatedBlogs(related, 'Related blogs')}
+                        {showRelatedBlogs(last, 'Recent blogs')}
                     </div>
                 </div>
 

@@ -77,6 +77,8 @@ const Header = () => {
                   <Link href='/'>
                     <label className="navbar__logo">{APP_NAME}</label>
                   </Link>
+                  
+                  
                   {searchForm()}
                   <ul className='navbar__list'>
                     <Link href='/'>
@@ -117,6 +119,11 @@ const Header = () => {
                       <li className='navbar__item'><a  className='navbar__link navbar__link--light' href="#">Write a Blog</a></li>
                     </Link>
                   </ul>
+                  <Link href='/'>
+                    <label className="home-btn">
+                        <i className="fas fa-home"></i>
+                    </label>
+                  </Link>
               </nav>
             </div>
             {searched ? <div className='search__dropdown'>{searchedBlogs(results)}</div> : <><br/><br/><br/><br/></>}

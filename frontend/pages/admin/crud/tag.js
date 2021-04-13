@@ -2,6 +2,7 @@ import Layout from "../../../components/Layout"
 import Admin from '../../../components/auth/Admin'
 import Dashboard from "../../../components/Dashboard"
 import Tags from '../../../components/crud/Tags'
+import DashboardContent from "../../../components/DashboardContent"
 
 
 const Tag = () => {
@@ -9,8 +10,10 @@ const Tag = () => {
         <Layout>
             <Dashboard>
                 <Admin>
-                    <h2>Manage Tags</h2>
-                    <Tags />
+                    <DashboardContent title={'Tags'}>
+                        <h2>Manage Tags</h2>
+                        <Tags />
+                    </DashboardContent>
                 </Admin>
             </Dashboard>
         </Layout>

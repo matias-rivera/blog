@@ -46,7 +46,7 @@ const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     const loadMoreButton = () => (
         size > 0 && size >= limit && (
             <button 
-                className='btn btn-outline-primary btn-lg'
+                className='btn btn-outline-primary btn-lg mt-4'
                 onClick={loadMore}
             >
                 Load More
@@ -71,7 +71,7 @@ const Index =  ({blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
 Index.getInitialProps = () => {
     const skip = 0
-    const limit = 8
+    const limit = 10
     return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
         if(data.error) {
             return console.log(data.error)

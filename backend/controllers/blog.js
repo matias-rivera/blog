@@ -130,6 +130,73 @@ exports.list = (req, res) => {
         })
 }
 
+//@desc     Last blogs
+//@route    GET /api/blogs/last
+//@access   Public
+exports.lastBlogs = (req, res) => {
+    Blog.find({})
+        .sort({'createdAt':"desc"})
+        .select('_id title slug createdAt')
+        .limit(10)
+        .exec((err, data) => {
+            if(err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                })
+            }
+            res.json(data)
+        })
+}
+
+//@desc     Last blogs
+//@route    GET /api/blogs/info
+//@access   Public
+exports.info = (req, res) => {
+    Blog.countDocuments({})
+        .exec((err, blogs) => {
+            if(err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                })
+            }
+            User.countDocuments({})
+                .exec((err, users) => {
+                    if(err) {
+                        return res.status(400).json({
+                            error: errorHandler(err)
+                        })
+                    }
+                    
+                    Tag.countDocuments({})
+                        .exec((err, tags) => {
+                            if(err) {
+                                return res.status(400).json({
+                                    error: errorHandler(err)
+                                })
+                            }
+                            
+                            Category.countDocuments({})
+                                .exec((err, categories) => {
+                                    if(err) {
+                                        return res.status(400).json({
+                                            error: errorHandler(err)
+                                        })
+                                    }
+                                    
+                                    res.json({
+                                        blogs: blogs,
+                                        categories: categories,
+                                        tags: tags,
+                                        users: users
+                                    })
+                                })
+                        })
+                })
+        
+        })
+}
+
+
 //@desc     List Blogs with Categories and Tags
 //@route    POST /api/blogs-categories-tags
 //@access   Public

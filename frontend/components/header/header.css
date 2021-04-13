@@ -8,8 +8,18 @@ nav{
     overflow: hidden;
     z-index: 1000;
     position: fixed;
+    padding: 0 10px;
     
   }
+
+  nav .home-btn{
+    color: var(--color-white);
+    font-size: 25px;
+    margin: 0;
+    cursor: pointer;
+    display: none;
+  }
+
   .navbar__logo{
     color: var(--color-white);
     font-size: 35px;
@@ -93,7 +103,6 @@ nav{
   .navbar__item{
     display: inline-block;
     line-height: 80px;
-    margin: 0 5px;
     cursor: pointer;
     
   }
@@ -126,9 +135,9 @@ nav{
     color: var(--color-white);
     float: right;
     line-height: 80px;
-    margin-right: 40px;
     cursor: pointer;
     display: none;
+    margin: 0;
   }
   #check{
     display: none;
@@ -136,7 +145,7 @@ nav{
 
   @media (max-width: 1300px){
     .navbar__link{
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
 
     .navbar__logo{
@@ -151,14 +160,15 @@ nav{
     
     nav{
         display: flex;
-        
         flex-direction: row-reverse;
         align-items: center;
         
-        
     }
     .checkbtn{
-      display: flex;
+      display: initial;
+    }
+    nav .home-btn{
+      display: initial;
     }
     .navbar__list{
       padding: 0;

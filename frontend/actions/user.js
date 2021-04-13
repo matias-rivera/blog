@@ -48,3 +48,22 @@ export const update = (token, user) => {
     .catch(err => console.log(err))
 }
 
+//get Users
+export const getUsers = (token) => {
+    
+    const endpoint = `${API}/user/latest`
+    
+    return fetch(endpoint, {
+        method: 'GET',
+        headers:{
+            Accept:'application/json',
+            'Content-Type':'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        handleResponse(response)
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}

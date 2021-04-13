@@ -129,3 +129,22 @@ exports.photo = (req, res) => {
     })
 
 }
+
+//@desc     Return latest users
+//@route    GET /api/user/latest
+//@access   Admin
+exports.latestUsers = (req, res) => {
+    User.find()
+        .sort({'createdAt':"desc"})
+        .select('_id name profile createdAt username')
+        .limit(10)
+        .exec((err, data) => {
+            if(err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                })
+            }
+            res.json(data)
+        })
+
+}
