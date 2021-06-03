@@ -3,7 +3,7 @@ import Head from "next/head";
 import Layout from "../../components/Layout";
 import { API, DOMAIN, APP_NAME } from "../../config";
 import { getCategory } from "../../actions/category";
-import Smallcard from "../../components/blog/Smallcard/index";
+import Smallcard from "../../components/blog/Smallcard";
 
 const Category = ({ category, blogs }) => {
     const head = () => (
