@@ -6,7 +6,7 @@ import { withRouter } from "next/router";
 import { listBlogsWithCategoriesAndTags } from "../actions/blog";
 import Card from "../components/blog/Card";
 import { API, DOMAIN, APP_NAME } from "../config";
-import Smallcard from "../components/blog/Smallcard";
+import Smallcard from "../components/blog/SmallCard";
 import Categories from "../components/categories";
 import Tags from "../components/tags";
 

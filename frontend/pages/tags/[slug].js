@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout from "../../components/Layout";
 import { API, DOMAIN, APP_NAME } from "../../config";
 import { getTag } from "../../actions/tag";
-import Smallcard from "../../components/blog/Smallcard";
+import Smallcard from "../../components/blog/SmallCard";
 
 const Tag = ({ tag, blogs }) => {
     const head = () => (
