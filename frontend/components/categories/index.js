@@ -1,29 +1,18 @@
-import Link from 'next/link'
-import './category.css';
+import Link from "next/link";
+import styles from "./category.module.css";
 
-
-const Categories = ({categories}) => {
-
+const Categories = ({ categories }) => {
     const showBlogCategories = () => (
-
-        <ul className='categories-list'>
-            {categories.map((category,i) => (
-            <Link key={i} href={`/categories/${category.slug}`}>
-                <li className='categories-list__item'>
-                    {category.name}
-                </li>
-            </Link>
-        ))}
-            
+        <ul className={styles.list}>
+            {categories.map((category, i) => (
+                <Link key={i} href={`/categories/${category.slug}`}>
+                    <li className={styles.item}>{category.name}</li>
+                </Link>
+            ))}
         </ul>
-        
-    )
+    );
 
-    return ( 
-        <>
-            {showBlogCategories()}
-        </>
-     );
-}
- 
+    return <>{showBlogCategories()}</>;
+};
+
 export default Categories;

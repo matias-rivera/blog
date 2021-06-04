@@ -1,5 +1,4 @@
-
-.maintenance{
+.maintenance {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,6 +7,6 @@
     margin-top: 10rem;
 }
 
-.maintenace__icon{
+.maintenance .fas {
     font-size: 4rem;
 }

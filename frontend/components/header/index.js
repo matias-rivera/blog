@@ -4,7 +4,7 @@ import { APP_NAME } from "../../config";
 import Link from "next/link";
 import Router from "next/router";
 import { signout, isAuth } from "../../actions/auth";
-import "./header.css";
+import styles from "./header.module.css";
 import { listSearch } from "../../actions/blog";
 
 Router.onRouteChangeStart = (url) => NProgress.start();
@@ -49,11 +49,11 @@ const Header = () => {
     const searchedBlogs = (results = []) => {
         return (
             <>
-                {message && <p className="search__message">{message}</p>}
+                {message && <p className={styles.search__message}>{message}</p>}
 
                 {results.map((blog, i) => (
                     <Link href={`/blogs/${blog.slug}`} key={i}>
-                        <a className="search__link">{blog.title}</a>
+                        <a className={styles.search__link}>{blog.title}</a>
                     </Link>
                 ))}
             </>
@@ -61,52 +61,62 @@ const Header = () => {
     };
 
     const searchForm = () => (
-        <form onSubmit={onSubmit} className="search">
+        <form onSubmit={onSubmit} className={styles.search}>
             <input
                 placeholder=" Search"
-                className="search__input"
+                className={styles.search__input}
                 type="text"
                 onChange={handleChange}
             />
-            <button type="submit" className="search__button">
+            <button type="submit" className={styles.search__button}>
                 <i className="fas fa-search"></i>
             </button>
         </form>
     );
     return (
         <>
-            <div className="navbar__container">
-                <nav>
-                    <input type="checkbox" id="check" />
-                    <label htmlFor="check" className="checkbtn">
+            <div className={styles.navbar__container}>
+                <nav className={styles.nav}>
+                    <input
+                        type="checkbox"
+                        id="check"
+                        className={styles.check}
+                    />
+                    <label htmlFor="check" className={styles.checkbtn}>
                         <i className="fas fa-bars"></i>
                     </label>
                     <Link href="/">
-                        <label className="navbar__logo">{APP_NAME}</label>
+                        <label className={styles.navbar__logo}>
+                            {APP_NAME}
+                        </label>
                     </Link>
 
                     {searchForm()}
-                    <ul className="navbar__list">
+                    <ul className={styles.navbar__list}>
                         <Link href="/">
-                            <li className="navbar__item">
-                                <a className="navbar__link">Home</a>
+                            <li className={styles.navbar__item}>
+                                <a className={styles.navbar__link}>Home</a>
                             </li>
                         </Link>
                         <Link href="/contact">
-                            <li className="navbar__item">
-                                <a className="navbar__link">Contact</a>
+                            <li className={styles.navbar__item}>
+                                <a className={styles.navbar__link}>Contact</a>
                             </li>
                         </Link>
                         {!isAuth() && (
                             <>
                                 <Link href="/signin">
-                                    <li className="navbar__item">
-                                        <a className="navbar__link">Signin</a>
+                                    <li className={styles.navbar__item}>
+                                        <a className={styles.navbar__link}>
+                                            Signin
+                                        </a>
                                     </li>
                                 </Link>
                                 <Link href="/signup">
-                                    <li className="navbar__item">
-                                        <a className="navbar__link">Signup</a>
+                                    <li className={styles.navbar__item}>
+                                        <a className={styles.navbar__link}>
+                                            Signup
+                                        </a>
                                     </li>
                                 </Link>
                             </>
@@ -114,25 +124,29 @@ const Header = () => {
 
                         {isAuth() && isAuth().role === 0 && (
                             <Link href="/user">
-                                <li className="navbar__item">
-                                    <a className="navbar__link">Dashboard</a>
+                                <li className={styles.navbar__item}>
+                                    <a className={styles.navbar__link}>
+                                        Dashboard
+                                    </a>
                                 </li>
                             </Link>
                         )}
 
                         {isAuth() && isAuth().role === 1 && (
                             <Link href="/admin">
-                                <li className="navbar__item">
-                                    <a className="navbar__link">Dashboard</a>
+                                <li className={styles.navbar__item}>
+                                    <a className={styles.navbar__link}>
+                                        Dashboard
+                                    </a>
                                 </li>
                             </Link>
                         )}
 
                         {isAuth() && (
                             <Link href="/">
-                                <li className="navbar__item">
+                                <li className={styles.navbar__item}>
                                     <a
-                                        className="navbar__link"
+                                        className={styles.navbar__link}
                                         style={{ cursor: "pointer" }}
                                         onClick={() =>
                                             signout(() =>
@@ -146,9 +160,12 @@ const Header = () => {
                             </Link>
                         )}
                         <Link href="/user/crud/blog">
-                            <li className="navbar__item">
+                            <li className={styles.navbar__item}>
                                 <a
-                                    className="navbar__link navbar__link--light"
+                                    className={[
+                                        styles.navbar__link,
+                                        styles.navbar__light,
+                                    ].join(" ")}
                                     href="#"
                                 >
                                     Write a Blog
@@ -157,7 +174,7 @@ const Header = () => {
                         </Link>
                     </ul>
                     <Link href="/">
-                        <label className="home-btn">
+                        <label className={styles.homebtn}>
                             <i className="fas fa-home"></i>
                         </label>
                     </Link>

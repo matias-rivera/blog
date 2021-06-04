@@ -1,27 +1,26 @@
-.tags-list{
+.list {
     display: flex;
-  flex-wrap: wrap;
-
+    flex-wrap: wrap;
 }
 
-.tags-list__item{
+.item {
     display: flex;
     flex-direction: column;
     flex: 1 0 10%;
     background: var(--color-secondary);
     padding: 0.5rem 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     color: var(--color-white);
     list-style-type: none;
-    margin: .5rem .5rem;
+    margin: 0.5rem 0.5rem;
     max-width: 100%;
     cursor: pointer;
     text-align: center;
-    transition: all .3s;
-    border: .1rem solid transparent;
+    transition: all 0.3s;
+    border: 0.1rem solid transparent;
 }
 
-.tags-list__item:hover{
+.item:hover {
     background: var(--color-secondary-dark);
-    border: .1rem solid var(--color-secondary);
+    border: 0.1rem solid var(--color-secondary);
 }
