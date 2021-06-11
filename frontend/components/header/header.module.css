@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    /*  overflow: hidden; */
     z-index: 1000;
     position: fixed;
     padding: 0 10px;
@@ -33,11 +33,35 @@
 .navbar__logo:hover {
     transform: scale(1.2);
 }
+
+.dropdown {
+    position: absolute;
+    background-color: #f7f7f7;
+    padding: 2rem;
+    z-index: 100;
+    top: 3.5rem;
+    border-radius: 0 0 10px 10px;
+}
+
 .search {
     display: flex;
     justify-content: center;
     align-items: stretch;
     flex-grow: 1;
+    position: relative;
+}
+
+.search__close {
+    position: absolute;
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    transition: all 0.2s;
+}
+
+.search__close:hover {
+    cursor: pointer;
+    color: rgb(209, 0, 0);
 }
 
 .search__dropdown {
@@ -48,11 +72,13 @@
 }
 
 .search__message {
-    padding-top: 1.5rem;
+    text-align: left;
     color: var(--color-gray-dark);
 }
 
 .search__link {
+    display: block;
+    text-align: center;
     color: var(--color-primary-light);
 }
 

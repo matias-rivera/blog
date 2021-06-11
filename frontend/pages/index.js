@@ -59,9 +59,9 @@ const Index = ({
         <Layout>
             <Categories categories={categories} />
             <div className="blogs-display">
-                {showAllBlogs()}
-                {showLoadedBlogs()}
+                {showAllBlogs()} {showLoadedBlogs()}
             </div>
+
             {loadMoreButton()}
             <Tags tags={tags} />
         </Layout>
@@ -70,7 +70,7 @@ const Index = ({
 
 Index.getInitialProps = () => {
     const skip = 0;
-    const limit = 10;
+    const limit = 12;
     return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
         if (data.error) {
             return console.log(data.error);

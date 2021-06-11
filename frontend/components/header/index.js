@@ -48,7 +48,20 @@ const Header = () => {
 
     const searchedBlogs = (results = []) => {
         return (
-            <>
+            <div>
+                <div
+                    className={styles.search__close}
+                    onClick={() =>
+                        setValues({
+                            search: undefined,
+                            results: [],
+                            searched: false,
+                            message: "",
+                        })
+                    }
+                >
+                    <i class="fas fa-times-circle"></i>
+                </div>
                 {message && <p className={styles.search__message}>{message}</p>}
 
                 {results.map((blog, i) => (
@@ -56,7 +69,7 @@ const Header = () => {
                         <a className={styles.search__link}>{blog.title}</a>
                     </Link>
                 ))}
-            </>
+            </div>
         );
     };
 
@@ -71,6 +84,9 @@ const Header = () => {
             <button type="submit" className={styles.search__button}>
                 <i className="fas fa-search"></i>
             </button>
+            {searched && (
+                <div className={styles.dropdown}>{searchedBlogs(results)}</div>
+            )}
         </form>
     );
     return (
@@ -180,16 +196,6 @@ const Header = () => {
                     </Link>
                 </nav>
             </div>
-            {searched ? (
-                <div className="search__dropdown">{searchedBlogs(results)}</div>
-            ) : (
-                <>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                </>
-            )}
         </>
     );
 };
