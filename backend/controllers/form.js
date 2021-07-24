@@ -1,21 +1,12 @@
-const nodemailer = require('nodemailer')
-
-const transport = {
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: process.env.EMAIL_USER, // generated ethereal user
-        pass: process.env.EMAIL_PASS, // generated ethereal password
-    },
-}
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.contactForm = (req, res) => {
-    const {email, name, message} = req.body;
+    const { email, name, message } = req.body;
 
     const emailData = {
-        to: process.env.EMAIL_TO,
-        from: email,
+        to: process.env.EMAIL_FROM,
+        from: process.env.EMAIL_FROM, // Use the email address or domain you verified above
         subject: `Contact form - ${process.env.APP_NAME}`,
         text: `Email received from contact from \n Sender name: ${name} \n Sender email: ${email} \n Sender message: ${message}`,
         html: `
@@ -26,29 +17,29 @@ exports.contactForm = (req, res) => {
             <hr />
             <p>This email may contain sensetive information</p>
             <p>www.matiasrivera.com</p>
-        `
-    }
+        `,
+    };
 
-    // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport(transport);
-
-    // send mail with defined transport object
-        transporter.sendMail(emailData).then(sent => {
+    sgMail.send(emailData).then(
+        () => {
             res.json({
-                success: true
-            })
-        }).catch(err => {
-            res.status(400).json({error: err.message})
-        });
+                success: true,
+            });
+        },
+        (error) => {
+            console.error(error);
 
-}
+            res.status(400).json({ error });
+        }
+    );
+};
 
 exports.contactBlogAuthorForm = (req, res) => {
-    const {authorEmail, email, name, message} = req.body;
+    const { authorEmail, email, name, message } = req.body;
 
     const emailData = {
         to: authorEmail,
-        from: email,
+        from: process.env.EMAIL_FROM,
         subject: `Someone messaged you from - ${process.env.APP_NAME}`,
         text: `Email received from contact from \n Sender name: ${name} \n Sender email: ${email} \n Sender message: ${message}`,
         html: `
@@ -59,18 +50,19 @@ exports.contactBlogAuthorForm = (req, res) => {
             <hr />
             <p>This email may contain sensetive information</p>
             <p>www.matiasrivera.com</p>
-        `
-    }
+        `,
+    };
 
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport(transport);
+    sgMail.send(emailData).then(
+        () => {
+            res.json({
+                success: true,
+            });
+        },
+        (error) => {
+            console.error(error);
 
-    // send mail with defined transport object
-    transporter.sendMail(emailData).then(sent => {
-        res.json({
-            success: true
-        })
-    }).catch(err => {
-        res.status(400).json({error: err.message})
-    });
-}
+            res.status(400).json({ error });
+        }
+    );
+};
