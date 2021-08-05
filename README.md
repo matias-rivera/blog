@@ -56,7 +56,7 @@ _5.2- Obtener el Facebook App ID para habilitar facebook._
 
 https://enfoquenomada.com/app-id-facebook/
 
-_6- Ejecuta los siguientes comandos para inciar el servidor y el cliente. Hacerlo desde la carpeta raíz._
+_6- Ejecuta los siguientes comandos para inciar el servidor y el cliente.
 
 ```
 npm run dev // en la carpeta backend
