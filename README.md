@@ -59,8 +59,7 @@ https://enfoquenomada.com/app-id-facebook/
 _6- Ejecuta los siguientes comandos para inciar el servidor y el cliente. Hacerlo desde la carpeta raíz._
 
 ```
-npm run server // inicia el servidor
-npm run client // inicia el cliente
+npm run dev // en la carpeta backend
 npm run dev // en la carpeta frontend
 ```
 
