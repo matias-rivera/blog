@@ -1,4 +1,4 @@
-# Restobar
+# BLOG
 
 _BlOG App made with NodeJS, Express, MongoDB, ReactJS and NextJS._
 
